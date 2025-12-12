@@ -1,9 +1,11 @@
 import streamlit as st
 import urllib.parse
 
+import streamlit as st
+
 st.set_page_config(
     page_title="Berry On Top 🍓",
-    layout="wide",      # makes it use full width
+    layout="wide",   \
     initial_sidebar_state="auto"
 )
 
@@ -128,9 +130,35 @@ if st.session_state.page == "Home":
     st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align:center; font-size: 70px; margin:0; letter-spacing:2px;'>Berry on Top</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center; font-size: 32px; color:#FFB6C1; margin:10px 0; font-weight:bold;'>Delicious Desserts</h3>", unsafe_allow_html=True)
-    st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)
 
-    col1, col2, col3, col4 = st.columns(4)
+    st.markdown("""
+    <style>
+    .stButton>button {
+        width: 100%;
+        max-width: 200px;
+        height: 60px;
+        font-size: 18px;
+        background-color: #c8102e;
+        color: white;
+        font-weight: bold;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
+        margin: 5px auto;
+    }
+    .stButton>button:hover {
+        background-color: #ff3c4e;
+    }
+    @media only screen and (max-width: 600px) {
+        .stButton>button {
+            font-size: 16px;
+            height: 50px;
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3, col4 = st.columns([1,1,1,1], gap="small")
     with col1:
         if st.button("🎂 Order Cakes & Desserts"):
             go_to_page("Order")
@@ -144,7 +172,6 @@ if st.session_state.page == "Home":
         if st.button("📞 Contact Us"):
             go_to_page("Contact")
 
-# --- ORDER PAGE ---
 elif st.session_state.page == "Order":
     st.markdown("<h1>Place Your Orders</h1>", unsafe_allow_html=True)
     st.markdown("---")
@@ -433,6 +460,10 @@ elif st.session_state.page == "Contact":
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
+
+    if st.button("⬅️ Back to Home"):
+        go_to_page("Home")
+
 
 
 
