@@ -1,9 +1,12 @@
 import streamlit as st
 import urllib.parse
+
 st.set_page_config(
     page_title="Berry On Top 🍓",
-    layout="wide",  
+    layout="wide",      # makes it use full width
     initial_sidebar_state="auto"
+)
+
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"] {
@@ -430,6 +433,7 @@ elif st.session_state.page == "Contact":
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
+
 
 
 
