@@ -121,7 +121,7 @@ st.markdown("""
 if st.session_state.page == "Home":
     st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align:center; font-size: 70px; margin:0; letter-spacing:2px;'>Berry on Top</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align:center; font-size: 32px; color:#FFB6C1; margin:10px 0; font-weight:bold;'>Delicious Desserts +961 71 184 268</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; font-size: 32px; color:#FFB6C1; margin:10px 0; font-weight:bold;'>Delicious Desserts</h3>", unsafe_allow_html=True)
     st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
@@ -427,5 +427,6 @@ elif st.session_state.page == "Contact":
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
+
 
 
