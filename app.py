@@ -1,6 +1,15 @@
 import streamlit as st
 import urllib.parse
-
+st.set_page_config(
+    page_title="Berry On Top 🍓",
+    layout="wide",
+    initial_sidebar_state="auto",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
+)
 st.markdown("""
 <style>
 .mobile-nav {
@@ -68,18 +77,8 @@ if "page" not in st.session_state:
     st.session_state.page = "Home"
 
 if "page" in st.query_params:
-    st.session_state.page = st.query_params["page"]
+    st.session_state.page = st.query_params["page"][0]
 
-st.set_page_config(
-    page_title="Berry On Top 🍓",
-    layout="wide",
-    initial_sidebar_state="auto",
-    menu_items={
-        'Get Help': None,
-        'Report a bug': None,
-        'About': None
-    }
-)
 st.markdown("""
 <style>
 
@@ -87,12 +86,6 @@ st.markdown("""
 footer {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
-
-st.set_page_config(
-    page_title="Berry On Top 🍓",
-    layout="wide",   \
-    initial_sidebar_state="auto"
-)
 
 st.markdown("""
 <style>
@@ -179,12 +172,10 @@ h1, h2, h3, h4, h5, h6, label, .stTextInput label, .stSelectbox label, .handwrit
     📞 Contact: +961 71 184 268
 </div>
 """, unsafe_allow_html=True)
-
 def go_to_page(page_name):
     st.session_state.page = page_name
+    st.query_params["page"] = page_name
 
-if "page" not in st.session_state:
-    st.session_state.page = "Home"
 
 for key in ["name", "phone", "delivery", "notes"]:
     if key not in st.session_state:
@@ -193,11 +184,10 @@ if "gallery_page" not in st.session_state:
     st.session_state.gallery_page = 1
 st.markdown("""
 <style>
-/* Make all buttons same size */
 .stButton>button {
-    width: 220px;       /* fixed width */
-    height: 60px;       /* fixed height */
-    font-size: 18px;    /* uniform font size */
+    width: 220px;
+    height: 60px;   
+    font-size: 18px;    
     background-color: #c8102e;
     color: white;
     font-weight: bold;
@@ -545,5 +535,6 @@ elif st.session_state.page == "Contact":
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
+
 
 
