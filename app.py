@@ -187,133 +187,120 @@ with col5:
     if st.button("📞 Contact"):
         st.session_state.page = "Contact"
 
-elif st.session_state.page == "Order":
-    st.markdown("<h1>Place Your Orders</h1>", unsafe_allow_html=True)
-    st.markdown("---")
-    st.markdown("<h2>🎂 Cakes</h2>", unsafe_allow_html=True)
+prices = {
+    "Cake": 0,
+    "Cake cups": {"Nutella": 30, "Ferrero": 30, "Fresir": 30, "Red Velvet": 36},
+    "Cookies": {"Chocolate Chip": 2.5, "Nutella Stuffed": 3},
+    "Brownies": {"Classic": 2, "Nutella": 2.5, "Lotus": 2.5},
+    "Donuts": {"Glazed": 2, "Chocolate": 2.5},
+    "Cheesecakes": {"Classic": 2.5, "3D": 3},
+    "Eclairs": {"Simple": 2, "3D": 2.5},
+    "Popsicles": {"Simple": 2.5, "3D": 3}
+}
 
-    option = st.multiselect("Options Available:", ["Cake"])
+st.header("📝 Your Information")
+name = st.text_input("Full Name*")
+phone = st.text_input("Phone Number*")
+delivery = st.text_input("Delivery Address")
+notes = st.text_area("Special Instructions (optional)")
 
-    if "Cake" in option:
-        real_fake = st.selectbox("Real or Fake Cake", ["Real Cake", "Fake Cake"])
-        cake_qty = st.number_input("Cake Quantity", min_value=1, value=1, key="cake_qty")
+st.header("🛒 Your Order")
+option = st.multiselect(
+    "What would you like to order?",
+    ["Cake", "Cake cups", "Cookies", "Brownies", "Donuts", "Cheesecakes", "Eclairs", "Popsicles"]
+)
 
-        if real_fake == "Real Cake":
-            shape = st.selectbox("Shapes", ["Round", "Oval","Heart"])
-            flavors = st.selectbox("Flavors Available", ["Nutella", "Ferrero Rocher", "Vanilla", "Vanilla & Hazelnut", "Lotus"])
-            size = st.selectbox("Sizes Available", ["3 people", "5 people", "10 people", "15 people", "20 people"])
-            cake_design = st.selectbox("Design", ["Simple", "Custom Design"])
-            if cake_design == "Custom Design":
-                custom_details = st.text_area("Describe your custom design")
-            else:
-                custom_details = ""
-        else:
-            shape = st.selectbox("Fake Cake Shape", [
-            "Round",
-            "Oval",
-            "Heart",
-            "Square",
-            "Custom Design"])
+total = 0
+order_details = ""
 
-            color = st.selectbox("Color Available", [
-            "Blue", "Baby Blue", "Red", "Black", "White", "Pink", "Purple",
-            "Burgundy", "Gold", "Silver", "Rose Gold", "Mint", "Peach",
-            "Grey", "Navy Blue", "Baby Pink", "Pastel Purple",
-            "Pastel Yellow", "(Custom Theme)"])
+if "Cake" in option:
+    real_fake = st.selectbox("Real or Fake Cake", ["Real Cake", "Fake Cake"])
+    if real_fake == "Real Cake":
+        shape = st.selectbox("Shape", ["Round", "Square", "Heart"])
+        flavors = st.selectbox("Flavor", ["Nutella", "Ferrero Rocher", "Vanilla", "Lotus"])
+        size = st.selectbox("Size", ["3 people", "5 people", "10 people", "15 people", "20 people"])
+        cake_price = st.number_input("Cake Price ($)", min_value=0.0, step=1.0)
+        total += cake_price
+        order_details += f"- Cake ({real_fake}) | {shape}, {flavors}, {size} — ${cake_price}\n"
 
-            layers = st.selectbox("Layers", [
-            "1 Layer", "2 Layers", "3 Layers", "4 Layers"])
+if "Cake cups" in option:
+    cakecups = st.selectbox("Cake Cups (Dozen)", list(prices["Cake cups"].keys()))
+    price = prices["Cake cups"][cakecups]
+    total += price
+    order_details += f"- Cake Cups ({cakecups}) — ${price}\n"
 
-    st.markdown("---")
-    st.markdown("<h2>🍰 Desserts</h2>", unsafe_allow_html=True)
-    option1 = st.multiselect("Options Available:", ["Cookies", "Brownies", "Donuts", "Cheesecakes", "Cake cups", "Eclairs", "Popsicles"])
+if "Cookies" in option:
+    cookies = st.selectbox("Cookies Type", list(prices["Cookies"].keys()))
+    qty = st.number_input("Cookies Quantity", 1, 100)
+    price = prices["Cookies"][cookies] * qty
+    total += price
+    order_details += f"- Cookies ({cookies}) x{qty} — ${price}\n"
 
-    popsicle_type = ""
-    eclair_type = ""
-    cakecups_type = ""
-    cheesecake_type = ""
-    donuts_type = ""
-    cookies_type = ""
-    brownies_type = ""
+if "Brownies" in option:
+    brownies = st.selectbox("Brownies Type", list(prices["Brownies"].keys()))
+    qty = st.number_input("Brownies Quantity", 1, 100)
+    price = prices["Brownies"][brownies] * qty
+    total += price
+    order_details += f"- Brownies ({brownies}) x{qty} — ${price}\n"
 
-    if "Popsicles" in option1:
-        popsicle_type = st.selectbox("Popsicles", ["Simple – $2.5", "3D Design – $3"])
-        popsicle_qty = st.number_input("Popsicles Quantity", min_value=1, value=1, key="popsicle_qty")
+if "Donuts" in option:
+    donuts = st.selectbox("Donuts Type", list(prices["Donuts"].keys()))
+    qty = st.number_input("Donuts Quantity", 1, 100)
+    price = prices["Donuts"][donuts] * qty
+    total += price
+    order_details += f"- Donuts ({donuts}) x{qty} — ${price}\n"
+
+if "Cheesecakes" in option:
+    cheesecake = st.selectbox("Cheesecake Type", list(prices["Cheesecakes"].keys()))
+    qty = st.number_input("Cheesecakes Quantity", 1, 100)
+    price = prices["Cheesecakes"][cheesecake] * qty
+    total += price
+    order_details += f"- Cheesecakes ({cheesecake}) x{qty} — ${price}\n"
+
+if "Eclairs" in option:
+    eclair = st.selectbox("Éclairs Type", list(prices["Eclairs"].keys()))
+    qty = st.number_input("Éclairs Quantity", 1, 100)
+    price = prices["Eclairs"][eclair] * qty
+    total += price
+    order_details += f"- Éclairs ({eclair}) x{qty} — ${price}\n"
+
+if "Popsicles" in option:
+    popsicle = st.selectbox("Popsicles Type", list(prices["Popsicles"].keys()))
+    qty = st.number_input("Popsicles Quantity", 1, 100)
+    price = prices["Popsicles"][popsicle] * qty
+    total += price
+    order_details += f"- Popsicles ({popsicle}) x{qty} — ${price}\n"
+
+st.subheader(f"💰 Total: ${total}")
+
+if st.button("Submit Order via WhatsApp"):
+    if name.strip() and phone.strip():
+        message = f"""
+Hello Berry On Top! 🍓
+
+Name: {name}
+Phone: {phone}
+Delivery: {delivery}
+
+Order:
+{order_details}
+
+Total: ${total}
+"""
+        if notes:
+            message += f"\nNotes: {notes}"
+
+        link = f"https://wa.me/96171184268?text={urllib.parse.quote(message)}"
+
+        st.markdown(f"""
+        <a href="{link}" target="_blank">
+            <button style="background:#25D366;color:white;padding:15px 30px;border:none;border-radius:10px;font-size:18px;font-weight:bold;">
+                💬 Send Order on WhatsApp
+            </button>
+        </a>
+        """, unsafe_allow_html=True)
     else:
-        popsicle_qty = 0
-
-    if "Eclairs" in option1:
-        eclair_type = st.selectbox("Éclairs", ["Simple – $2", "3D Design – $2.5"])
-        eclair_qty = st.number_input("Éclairs Quantity", min_value=1, value=1, key="eclair_qty")
-    else:
-        eclair_qty = 0
-
-    if "Cake cups" in option1:
-        cakecups_type = st.selectbox("Cake Cups (per dozen)", ["Nutella - $30", "Ferrero – $30", "Fraisier – $30", "Red Velvet – $36"])
-        cakecups_qty = st.number_input("Cake Cups Quantity (dozen)", min_value=1, value=1, key="cakecups_qty")
-    else:
-        cakecups_qty = 0
-
-    if "Cheesecakes" in option1:
-        cheesecake_type = st.selectbox("Cheesecakes (per piece)", ["Simple – $2.5", "3D Design – $3.0"])
-        cheesecake_qty = st.number_input("Cheesecakes Quantity", min_value=1, value=1, key="cheesecake_qty")
-    else:
-        cheesecake_qty = 0
-
-    if "Donuts" in option1:
-        donuts_type = st.selectbox("Donuts (per piece)", ["Simple – $2"])
-        donuts_qty = st.number_input("Donuts Quantity", min_value=1, value=1, key="donuts_qty")
-    else:
-        donuts_qty = 0
-
-    if "Cookies" in option1:
-        cookies_type = st.selectbox("Cookies (per piece)", ["Simple – $2.5", "Decorated - $3.0"])
-        cookies_qty = st.number_input("Cookies Quantity", min_value=1, value=1, key="cookies_qty")
-    else:
-        cookies_qty = 0
-
-    if "Brownies" in option1:
-        brownies_type = st.selectbox("Brownies (per piece)", ["Simple – $2", "3D Flower – $2.5"])
-        brownies_qty = st.number_input("Brownies Quantity", min_value=1, value=1, key="brownies_qty")
-    else:
-        brownies_qty = 0
-
-    st.markdown("---")
-    st.markdown("<h2>📝 Your Information</h2>", unsafe_allow_html=True)
-    st.session_state.name = st.text_input("Full Name*", value=st.session_state.name)
-    st.session_state.phone = st.text_input("Phone Number*", value=st.session_state.phone)
-    st.session_state.delivery = st.text_area("Delivery Address", value=st.session_state.delivery)
-    st.session_state.notes = st.text_area("Special Instructions (optional)", value=st.session_state.notes)
-
-    if st.button("📩 Send Order via WhatsApp"):
-        if st.session_state.name.strip() != "" and st.session_state.phone.strip() != "":
-            message = f"Hello Berry On Top! 🍓\n\nMy Order:\n"
-
-            if "Cake" in option:
-                message += f"- {real_fake} Cake (Quantity: {cake_qty})\n"
-                if real_fake == "Real Cake":
-                    message += f"  Shape: {shape}\n  Flavor: {flavors}\n  Size: {size}\n  Design: {cake_design}\n"
-                    if cake_design == "Custom Design":
-                        message += f"  Custom Details: {custom_details}\n"
-                if real_fake == "Fake Cake":
-                    message += f"  Layers: {layers}\n  Color: {color}\n"
-
-            for dessert, value, qty in [("Popsicles", popsicle_type, popsicle_qty), ("Éclairs", eclair_type, eclair_qty), ("Cake cups", cakecups_type, cakecups_qty),
-                                   ("Cheesecakes", cheesecake_type, cheesecake_qty), ("Donuts", donuts_type, donuts_qty), ("Cookies", cookies_type, cookies_qty), ("Brownies", brownies_type, brownies_qty)]:
-                if value:
-                    message += f"- {dessert}: {value} x{qty}\n"
-
-            message += f"\n📝 Name: {st.session_state.name}\n📞 Phone: {st.session_state.phone}\nDelivery: {st.session_state.delivery}"
-            if st.session_state.notes:
-                message += f"\n💬 Notes: {st.session_state.notes}"
-
-            whatsapp_link = f"https://wa.me/96171184268?text={urllib.parse.quote(message)}"
-            st.markdown(f'<a href="{whatsapp_link}" target="_blank"><button style="background-color:#25D366;color:white;padding:15px 30px;border:none;border-radius:10px;font-size:18px;">💬 Send Order via WhatsApp</button></a>', unsafe_allow_html=True)
-        else:
-            st.error("❌ Please fill in your name and phone number!")
-
-    if st.button("⬅️ Back to Home"):
-        st.session_state.page = "Home"
+        st.error("❌ Name and phone are required")
 
 elif st.session_state.page == "Packages":
     st.markdown("<h1>Party Packages</h1>", unsafe_allow_html=True)
@@ -466,3 +453,4 @@ elif st.session_state.page == "Contact":
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
+
