@@ -328,7 +328,7 @@ elif st.session_state.page == "Order":
             if st.session_state.notes:
                 message += f"\n💬 Notes: {st.session_state.notes}"
 
-            whatsapp_link = f"https://wa.me/96171184268?text={urllib.parse.quote(message)}"
+            whatsapp_link = f"https://wa.me/96181864920?text={urllib.parse.quote(message)}"
             st.markdown(f'<a href="{whatsapp_link}" target="_blank"><button style="background-color:#25D366;color:white;padding:15px 30px;border:none;border-radius:10px;font-size:18px;">💬 Send Order via WhatsApp</button></a>', unsafe_allow_html=True)
         else:
             st.error("❌ Please fill in your name and phone number!")
@@ -506,3 +506,4 @@ elif st.session_state.page == "Contact":
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
+
