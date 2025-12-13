@@ -112,6 +112,8 @@ html, body, [class*="css"] {
     color: #ffffff !important;
     text-shadow: 1px 1px 2px #000000;
     font-family: 'Caveat', 'Dancing Script', cursive;
+    font-size: 14px;
+    line-height: 1.3;
 }
 
 h1, h2, h3, h4, h5, h6, label {
@@ -119,6 +121,7 @@ h1, h2, h3, h4, h5, h6, label {
     text-shadow: 2px 2px 4px #000 !important;
     font-family: 'Caveat', 'Dancing Script', cursive;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .packages-title {
@@ -205,6 +208,7 @@ h1, h2, h3, h4, h5, h6, label {
     border-radius: 10px !important;
     font-family: 'Caveat', cursive !important;
     font-size: 16px !important;
+    line-height: 1.3;
 }
 
 .stSelectbox>div>div>div>div {
@@ -246,9 +250,11 @@ h1, h2, h3, h4, h5, h6, label {
     
     [data-testid="stAppViewContainer"] { padding-bottom: 95px; }
     
-    h1 { font-size: 40px !important; }
-    h2 { font-size: 24px !important; }
-    h3 { font-size: 18px !important; }
+    h1 { font-size: 40px !important; line-height: 1.1; }
+    h2 { font-size: 24px !important; line-height: 1.2; }
+    h3 { font-size: 18px !important; line-height: 1.2; }
+    
+    p { font-size: 13px !important; line-height: 1.3; }
 }
 
 @media only screen and (max-width: 640px) {
@@ -475,4 +481,3 @@ elif st.session_state.page == "Contact":
     st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
-
