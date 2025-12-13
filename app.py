@@ -1,35 +1,28 @@
 import streamlit as st
 import urllib.parse
 
-
 st.set_page_config(
     page_title="Berry On Top 🍓",
     layout="wide",
-    initial_sidebar_state="auto",
+    initial_sidebar_state="collapsed",
     menu_items={
         'Get Help': None,
         'Report a bug': None,
         'About': None
     }
 )
+
 st.markdown("""
 <style>
-
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
-</style>
-""", unsafe_allow_html=True)
 
-st.set_page_config(
-    page_title="Berry On Top 🍓",
-    layout="wide",   \
-    initial_sidebar_state="auto"
-)
-
-st.markdown("""
-<style>
 [data-testid="stAppViewContainer"] {
- background-image: url("https://i.pinimg.com/1200x/76/18/fe/7618fe761344a9ba3d40386ba48ccf5d.jpg");
+    background-image: url("https://i.pinimg.com/1200x/76/18/fe/7618fe761344a9ba3d40386ba48ccf5d.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 [data-testid="stAppViewContainer"]::before {
@@ -44,22 +37,21 @@ st.markdown("""
 html, body, [class*="css"] {
     color: #ffffff !important;
     text-shadow: 1px 1px 2px #000000;
-    font-family: 'Cursive', 'Brush Script MT', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, label, .stTextInput label, .stSelectbox label, .handwriting, .packages-title, .packages-subtitle, .package-name, .package-details {
+h1, h2, h3, h4, h5, h6, label, .stTextInput label, .stSelectbox label {
     color: #ffffff !important;
     text-shadow: 2px 2px 4px #000 !important;
-    font-family: 'Cursive', 'Brush Script MT', sans-serif;
 }
 
 .stButton>button {
     background-color: #c8102e;
-    color: #fff; 
+    color: #fff;
     font-weight: bold;
     border-radius: 10px;
     padding: 10px 25px;
     box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
+    width: 100%;
 }
 
 .stButton>button:hover {
@@ -105,10 +97,74 @@ h1, h2, h3, h4, h5, h6, label, .stTextInput label, .stSelectbox label, .handwrit
     box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
     z-index: 999;
 }
+
+.nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.nav-button {
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+    }
+    
+    .nav-button {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .stButton>button {
+        height: 50px;
+        font-size: 16px;
+    }
+    
+    h1 {
+        font-size: 40px !important;
+    }
+    
+    h3 {
+        font-size: 20px !important;
+    }
+    
+    .contact-float {
+        padding: 10px 15px;
+        font-size: 12px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 30px !important;
+    }
+    
+    h2 {
+        font-size: 20px !important;
+    }
+    
+    h3 {
+        font-size: 16px !important;
+    }
+    
+    .stButton>button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
 </style>
 
 <div class="contact-float">
-    📞 Contact: +961 71 184 268
+    📞 +961 71 184 268
 </div>
 """, unsafe_allow_html=True)
 
@@ -123,77 +179,46 @@ for key in ["name", "phone", "delivery", "notes"]:
         st.session_state[key] = ""
 if "gallery_page" not in st.session_state:
     st.session_state.gallery_page = 1
-st.markdown("""
-<style>
-/* Make all buttons same size */
-.stButton>button {
-    width: 220px;       /* fixed width */
-    height: 60px;       /* fixed height */
-    font-size: 18px;    /* uniform font size */
-    background-color: #c8102e;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-}
 
-.stButton>button:hover {
-    background-color: #ff3c4e;
-}
-</style>
-""", unsafe_allow_html=True)
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1:
+    if st.button("🏠 Home", use_container_width=True):
+        go_to_page("Home")
+with col2:
+    if st.button("🎂 Order", use_container_width=True):
+        go_to_page("Order")
+with col3:
+    if st.button("🎁 Packages", use_container_width=True):
+        go_to_page("Packages")
+with col4:
+    if st.button("📸 Gallery", use_container_width=True):
+        go_to_page("Gallery")
+with col5:
+    if st.button("📞 Contact", use_container_width=True):
+        go_to_page("Contact")
+
+st.markdown("---")
 
 if st.session_state.page == "Home":
-    st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align:center; font-size: 70px; margin:0; letter-spacing:2px;'>Berry on Top</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align:center; font-size: 32px; color:#FFB6C1; margin:10px 0; font-weight:bold;'>Delicious Desserts</h3>", unsafe_allow_html=True)
+    st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:center; font-size: 70px; margin:0;'>Berry on Top</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; font-size: 32px; color:#FFB6C1; margin:10px 0;'>Delicious Desserts</h3>", unsafe_allow_html=True)
     st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)
 
-    st.markdown("""
-    <style>
-    .stButton>button {
-        width: 100%;
-        max-width: 200px;
-        height: 60px;
-        font-size: 18px;
-        background-color: #c8102e;
-        color: white;
-        font-weight: bold;
-        border-radius: 10px;
-        box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-        margin: 5px auto;
-    }
-    .stButton>button:hover {
-        background-color: #ff3c4e;
-    }
-    @media only screen and (max-width: 600px) {
-        .stButton>button {
-            font-size: 16px;
-            height: 50px;
-        }
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    col1, col2, col3, col4 = st.columns([1,1,1,1], gap="small")
-    with col1:
-        if st.button("🎂 Order Cakes & Desserts"):
-            go_to_page("Order")
-    with col2:
-        if st.button("🎁 View Packages"):
-            go_to_page("Packages")
-    with col3:
-        if st.button("📸 Gallery"):
-            go_to_page("Gallery")
-    with col4:
-        if st.button("📞 Contact Us"):
-            go_to_page("Contact")
-
 elif st.session_state.page == "Order":
-    st.markdown("<h1>Place Your Orders</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>🎂 Place Your Orders</h1>", unsafe_allow_html=True)
+    st.markdown("---")
+
+    st.markdown("<h2>📝 Your Information</h2>", unsafe_allow_html=True)
+    st.session_state.name = st.text_input("Full Name*", value=st.session_state.name)
+    st.session_state.phone = st.text_input("Phone Number*", value=st.session_state.phone)
+    st.session_state.delivery = st.text_area("Delivery Address", value=st.session_state.delivery, height=80)
+    st.session_state.notes = st.text_area("Special Instructions (optional)", value=st.session_state.notes, height=80)
+
     st.markdown("---")
     st.markdown("<h2>🎂 Cakes</h2>", unsafe_allow_html=True)
 
+    cake_price = 0
     option = st.multiselect("Options Available:", ["Cake"])
 
     if "Cake" in option:
@@ -201,30 +226,27 @@ elif st.session_state.page == "Order":
         cake_qty = st.number_input("Cake Quantity", min_value=1, value=1, key="cake_qty")
 
         if real_fake == "Real Cake":
-            shape = st.selectbox("Shapes", ["Round", "Oval","Heart"])
-            flavors = st.selectbox("Flavors Available", ["Nutella", "Ferrero Rocher", "Vanilla", "Vanilla & Hazelnut", "Lotus"])
-            size = st.selectbox("Sizes Available", ["3 people", "5 people", "10 people", "15 people", "20 people","25 people","30 people","40 people","50 people"])
-            cake_design = st.selectbox("Design", ["Simple", "Custom Design"])
-            if cake_design == "Custom Design":
-                custom_details = st.text_area("Describe your custom design")
+            shape = st.selectbox("Shapes", ["Round", "Oval", "Heart"], key="shape")
+            flavors = st.selectbox("Flavors Available", ["Nutella", "Ferrero Rocher", "Vanilla", "Vanilla & Hazelnut", "Lotus"], key="flavors")
+            size = st.selectbox("Sizes Available", 
+                ["3 people - $35", "5 people - $50", "10 people - $80", "15 people - $120", "20 people - $150", "25 people - $180", "30 people - $210"],
+                key="size")
+            cake_price = float(size.split("- $")[1])
+            cake_design = st.selectbox("Design", ["Simple", "Custom Design - +$15"], key="design")
+            if "Custom" in cake_design:
+                cake_price += 15
+                custom_details = st.text_area("Describe your custom design", key="custom")
             else:
                 custom_details = ""
         else:
-            shape = st.selectbox("Fake Cake Shape", [
-            "Round",
-            "Oval",
-            "Heart",
-            "Square",
-            "Custom Design"])
-
-            color = st.selectbox("Color Available", [
-            "Blue", "Baby Blue", "Red", "Black", "White", "Pink", "Purple",
-            "Burgundy", "Gold", "Silver", "Rose Gold", "Mint", "Peach",
-            "Grey", "Navy Blue", "Baby Pink", "Pastel Purple",
-            "Pastel Yellow", "(Custom Theme)"])
-
-            layers = st.selectbox("Layers", [
-            "1 Layer", "2 Layers", "3 Layers", "4 Layers"])
+            shape = st.selectbox("Fake Cake Shape", ["Round", "Oval", "Heart", "Square", "Custom Design"], key="fake_shape")
+            color = st.selectbox("Color Available", 
+                ["Blue", "Baby Blue", "Red", "Black", "White", "Pink", "Purple", "Burgundy", "Gold", "Silver", "Rose Gold", "Mint", "Peach", "Grey", "Navy Blue", "Baby Pink"],
+                key="color")
+            layers = st.selectbox("Layers", ["1 Layer - $25", "2 Layers - $40", "3 Layers - $60", "4 Layers - $80"], key="layers")
+            cake_price = float(layers.split("- $")[1])
+            cake_design = ""
+            custom_details = ""
 
     st.markdown("---")
     st.markdown("<h2>🍰 Desserts</h2>", unsafe_allow_html=True)
@@ -477,3 +499,4 @@ elif st.session_state.page == "Contact":
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
+
