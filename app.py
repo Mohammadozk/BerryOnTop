@@ -1,44 +1,18 @@
 import streamlit as st
 import urllib.parse
 
+st.set_page_config(layout="wide")
+
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"] {
-  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==");
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbbRx3u9QvaCigoDufC2sysUKR-gfifIMsnA&s");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-</style>
-""", unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-html, body, [class*="css"] {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px #000000;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px #000000;
-}
-
-label, .stTextInput label, .stSelectbox label {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px #000000;
-}
-
-.handwriting {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px #000000;
-}
-</style>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<style>
 html, body, [class*="css"] {
     color: #ffffff !important;
     text-shadow: 1px 1px 2px #000000;
@@ -56,7 +30,7 @@ label, .stTextInput label, .stSelectbox label {
 
 .stButton>button {
     background-color: #c8102e;
-    color: #fff; 
+    color: #fff;
     font-weight: bold;
     border-radius: 10px;
     padding: 10px 25px;
@@ -98,58 +72,20 @@ label, .stTextInput label, .stSelectbox label {
     color: rgba(0,0,0,0.5);
 }
 
-.handwriting {
-    color: #fff;
-    text-shadow: 2px 2px 4px #000;
-    font-family: 'Cursive', 'Brush Script MT', sans-serif;
-}
-</style>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<style>
-.sidebar-nav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 100vh;
-    background: rgba(200, 16, 46, 0.95);
-    padding: 20px;
-    overflow-y: auto;
-    z-index: 100;
-}
-
-.sidebar-nav h2 {
-    color: #fff;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-    text-shadow: 2px 2px 4px #000;
-}
-
-.sidebar-nav button {
-    width: 100%;
-    background-color: #fff;
-    color: #c8102e;
-    border: none;
-    padding: 12px;
+.summary-box {
+    background-color: rgba(200, 16, 46, 0.3);
+    border: 2px solid #FFB6C1;
+    border-radius: 10px;
+    padding: 15px;
     margin: 10px 0;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s;
 }
 
-.sidebar-nav button:hover {
-    background-color: #FFB6C1;
-    transform: translateX(5px);
-}
-
-main {
-    margin-left: 250px;
+.total-box {
+    background-color: rgba(255, 182, 193, 0.2);
+    border: 3px solid #FFB6C1;
+    border-radius: 10px;
     padding: 20px;
+    margin: 20px 0;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -157,18 +93,12 @@ main {
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
-for key in ["name", "phone", "delivery", "notes"]:
-    if key not in st.session_state:
-        st.session_state[key] = ""
 if "gallery_page" not in st.session_state:
     st.session_state.gallery_page = 1
 
-st.markdown("""
-<div class="sidebar-nav">
-    <h2>🍓 Berry on Top</h2>
-</div>
-<main>
-""", unsafe_allow_html=True)
+for key in ["name", "phone", "delivery", "notes"]:
+    if key not in st.session_state:
+        st.session_state[key] = ""
 
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
@@ -187,124 +117,157 @@ with col5:
     if st.button("📞 Contact"):
         st.session_state.page = "Contact"
 
-prices = {
-    "Cake": 0,
-    "Cake cups": {"Nutella": 30, "Ferrero": 30, "Fresir": 30, "Red Velvet": 36},
-    "Cookies": {"Chocolate Chip": 2.5, "Nutella Stuffed": 3},
-    "Brownies": {"Classic": 2, "Nutella": 2.5, "Lotus": 2.5},
-    "Donuts": {"Glazed": 2, "Chocolate": 2.5},
-    "Cheesecakes": {"Classic": 2.5, "3D": 3},
-    "Eclairs": {"Simple": 2, "3D": 2.5},
-    "Popsicles": {"Simple": 2.5, "3D": 3}
-}
+st.markdown("---")
 
-st.header("📝 Your Information")
-name = st.text_input("Full Name*")
-phone = st.text_input("Phone Number*")
-delivery = st.text_input("Delivery Address")
-notes = st.text_area("Special Instructions (optional)")
+if st.session_state.page == "Home":
+    st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:center; font-size: 70px; color:#fff; text-shadow: 4px 4px 8px #000;'>Berry on Top</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; font-size: 32px; color:#FFB6C1; text-shadow: 2px 2px 4px #000;'>Delicious Desserts</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; font-size: 24px; color:#fff; text-shadow: 2px 2px 4px #000;'>📞 +961 71 184 268</h3>", unsafe_allow_html=True)
 
-st.header("🛒 Your Order")
-option = st.multiselect(
-    "What would you like to order?",
-    ["Cake", "Cake cups", "Cookies", "Brownies", "Donuts", "Cheesecakes", "Eclairs", "Popsicles"]
-)
+elif st.session_state.page == "Order":
+    st.markdown("<h1>🎂 Place Your Order</h1>", unsafe_allow_html=True)
+    st.markdown("---")
 
-total = 0
-order_details = ""
+    st.session_state.name = st.text_input("👤 Full Name*", value=st.session_state.name)
+    st.session_state.phone = st.text_input("📞 Phone Number*", value=st.session_state.phone)
+    st.session_state.delivery = st.text_area("🏠 Delivery Address", value=st.session_state.delivery, height=80)
+    st.session_state.notes = st.text_area("💬 Special Instructions (optional)", value=st.session_state.notes, height=80)
 
-if "Cake" in option:
-    real_fake = st.selectbox("Real or Fake Cake", ["Real Cake", "Fake Cake"])
-    if real_fake == "Real Cake":
-        shape = st.selectbox("Shape", ["Round", "Square", "Heart"])
-        flavors = st.selectbox("Flavor", ["Nutella", "Ferrero Rocher", "Vanilla", "Lotus"])
-        size = st.selectbox("Size", ["3 people", "5 people", "10 people", "15 people", "20 people"])
-        cake_price = st.number_input("Cake Price ($)", min_value=0.0, step=1.0)
-        total += cake_price
-        order_details += f"- Cake ({real_fake}) | {shape}, {flavors}, {size} — ${cake_price}\n"
+    st.markdown("---")
+    st.markdown("<h2>🎂 Select Your Items</h2>", unsafe_allow_html=True)
 
-if "Cake cups" in option:
-    cakecups = st.selectbox("Cake Cups (Dozen)", list(prices["Cake cups"].keys()))
-    price = prices["Cake cups"][cakecups]
-    total += price
-    order_details += f"- Cake Cups ({cakecups}) — ${price}\n"
+    cake_total = 0
+    dessert_total = 0
+    order_items = []
 
-if "Cookies" in option:
-    cookies = st.selectbox("Cookies Type", list(prices["Cookies"].keys()))
-    qty = st.number_input("Cookies Quantity", 1, 100)
-    price = prices["Cookies"][cookies] * qty
-    total += price
-    order_details += f"- Cookies ({cookies}) x{qty} — ${price}\n"
+    col1, col2 = st.columns(2)
 
-if "Brownies" in option:
-    brownies = st.selectbox("Brownies Type", list(prices["Brownies"].keys()))
-    qty = st.number_input("Brownies Quantity", 1, 100)
-    price = prices["Brownies"][brownies] * qty
-    total += price
-    order_details += f"- Brownies ({brownies}) x{qty} — ${price}\n"
+    with col1:
+        st.markdown("<h3>🍰 Real Cakes</h3>", unsafe_allow_html=True)
+        add_real_cake = st.checkbox("Add Real Cake")
+        if add_real_cake:
+            cake_shape = st.selectbox("Shape", ["Round", "Oval", "Heart"], key="cake_shape")
+            cake_flavor = st.selectbox("Flavor", ["Nutella", "Ferrero Rocher", "Vanilla", "Vanilla & Hazelnut", "Lotus"], key="cake_flavor")
+            cake_size = st.selectbox("Size", 
+                ["3 people - $35", "5 people - $50", "10 people - $80", "15 people - $120", "20 people - $150"],
+                key="cake_size")
+            cake_price = float(cake_size.split("- $")[1])
+            cake_qty = st.number_input("Quantity", min_value=1, value=1, key="cake_qty")
+            custom_design = st.checkbox("Add Custom Design (+$15)")
+            if custom_design:
+                cake_price += 15
+                custom_details = st.text_area("Describe your design")
+            else:
+                custom_details = ""
+            
+            cake_total = cake_price * cake_qty
+            order_items.append({
+                "name": "Real Cake",
+                "details": f"{cake_shape}, {cake_flavor}, {cake_size.split(' - ')[0]}",
+                "qty": cake_qty,
+                "unit_price": cake_price,
+                "total": cake_total
+            })
 
-if "Donuts" in option:
-    donuts = st.selectbox("Donuts Type", list(prices["Donuts"].keys()))
-    qty = st.number_input("Donuts Quantity", 1, 100)
-    price = prices["Donuts"][donuts] * qty
-    total += price
-    order_details += f"- Donuts ({donuts}) x{qty} — ${price}\n"
+        st.markdown("<h3>🎨 Fake Cakes</h3>", unsafe_allow_html=True)
+        add_fake_cake = st.checkbox("Add Fake Cake")
+        if add_fake_cake:
+            fake_shape = st.selectbox("Shape", ["Round", "Oval", "Heart", "Square", "Custom"], key="fake_shape")
+            fake_color = st.selectbox("Color", 
+                ["Blue", "Baby Blue", "Red", "Black", "White", "Pink", "Purple", "Burgundy", "Gold", 
+                 "Silver", "Rose Gold", "Mint", "Peach", "Grey", "Navy Blue", "Baby Pink", "Pastel Purple", "Pastel Yellow"],
+                key="fake_color")
+            fake_layers = st.selectbox("Layers",
+                ["1 Layer - $25", "2 Layers - $40", "3 Layers - $60", "4 Layers - $80"],
+                key="fake_layers")
+            fake_price = float(fake_layers.split("- $")[1])
+            fake_qty = st.number_input("Quantity", min_value=1, value=1, key="fake_qty")
+            fake_total = fake_price * fake_qty
+            order_items.append({
+                "name": "Fake Cake",
+                "details": f"{fake_shape}, {fake_color}, {fake_layers.split(' - ')[0]}",
+                "qty": fake_qty,
+                "unit_price": fake_price,
+                "total": fake_total
+            })
 
-if "Cheesecakes" in option:
-    cheesecake = st.selectbox("Cheesecake Type", list(prices["Cheesecakes"].keys()))
-    qty = st.number_input("Cheesecakes Quantity", 1, 100)
-    price = prices["Cheesecakes"][cheesecake] * qty
-    total += price
-    order_details += f"- Cheesecakes ({cheesecake}) x{qty} — ${price}\n"
+    with col2:
+        st.markdown("<h3>🍪 Desserts</h3>", unsafe_allow_html=True)
 
-if "Eclairs" in option:
-    eclair = st.selectbox("Éclairs Type", list(prices["Eclairs"].keys()))
-    qty = st.number_input("Éclairs Quantity", 1, 100)
-    price = prices["Eclairs"][eclair] * qty
-    total += price
-    order_details += f"- Éclairs ({eclair}) x{qty} — ${price}\n"
+        desserts_options = {
+            "Popsicles": {"Simple": 2.5, "3D Design": 3},
+            "Eclairs": {"Simple": 2, "3D Design": 2.5},
+            "Cake Cups": {"Nutella": 30, "Ferrero": 30, "Fraisier": 30, "Red Velvet": 36},
+            "Cheesecakes": {"Simple": 2.5, "3D Design": 3},
+            "Donuts": {"Simple": 2},
+            "Cookies": {"Simple": 2.5, "Decorated": 3},
+            "Brownies": {"Simple": 2, "3D Flower": 2.5}
+        }
 
-if "Popsicles" in option:
-    popsicle = st.selectbox("Popsicles Type", list(prices["Popsicles"].keys()))
-    qty = st.number_input("Popsicles Quantity", 1, 100)
-    price = prices["Popsicles"][popsicle] * qty
-    total += price
-    order_details += f"- Popsicles ({popsicle}) x{qty} — ${price}\n"
+        for dessert_type, options in desserts_options.items():
+            add_dessert = st.checkbox(f"Add {dessert_type}")
+            if add_dessert:
+                if len(options) > 1:
+                    dessert_variant = st.selectbox(f"{dessert_type} Type", list(options.keys()), key=f"{dessert_type}_type")
+                    dessert_price = options[dessert_variant]
+                else:
+                    dessert_variant = list(options.keys())[0]
+                    dessert_price = options[dessert_variant]
 
-st.subheader(f"💰 Total: ${total}")
+                dessert_qty = st.number_input(f"{dessert_type} Qty", min_value=1, value=1, key=f"{dessert_type}_qty")
+                dessert_item_total = dessert_price * dessert_qty
+                order_items.append({
+                    "name": dessert_type,
+                    "details": dessert_variant,
+                    "qty": dessert_qty,
+                    "unit_price": dessert_price,
+                    "total": dessert_item_total
+                })
 
-if st.button("Submit Order via WhatsApp"):
-    if name.strip() and phone.strip():
-        message = f"""
-Hello Berry On Top! 🍓
+    st.markdown("---")
+    st.markdown("<h2>📋 Order Summary</h2>", unsafe_allow_html=True)
 
-Name: {name}
-Phone: {phone}
-Delivery: {delivery}
+    total_price = 0
+    if order_items:
+        st.markdown("<div class='summary-box'>", unsafe_allow_html=True)
+        for item in order_items:
+            st.markdown(f"<p style='color:#fff; font-size:16px;'>• <b>{item['qty']}x {item['name']}</b> ({item['details']}) - <b>${item['total']:.2f}</b></p>", unsafe_allow_html=True)
+            total_price += item['total']
+        st.markdown("</div>", unsafe_allow_html=True)
 
-Order:
-{order_details}
+        st.markdown(f"<div class='total-box'><h3 style='text-align:center; color:#FFB6C1;'>💰 Total: ${total_price:.2f}</h3></div>", unsafe_allow_html=True)
 
-Total: ${total}
-"""
-        if notes:
-            message += f"\nNotes: {notes}"
+        if st.button("📩 Send Order via WhatsApp"):
+            if st.session_state.name.strip() and st.session_state.phone.strip():
+                message = f"Hello Berry On Top! 🍓\n\n"
+                message += f"👤 Name: {st.session_state.name}\n"
+                message += f"📞 Phone: {st.session_state.phone}\n"
+                message += f"🏠 Delivery: {st.session_state.delivery}\n\n"
+                message += "📋 ORDER DETAILS:\n"
+                message += "=" * 40 + "\n"
 
-        link = f"https://wa.me/96171184268?text={urllib.parse.quote(message)}"
+                for item in order_items:
+                    message += f"🍰 {item['qty']}x {item['name']} ({item['details']})\n"
+                    message += f"   ${item['unit_price']:.2f} × {item['qty']} = ${item['total']:.2f}\n"
 
-        st.markdown(f"""
-        <a href="{link}" target="_blank">
-            <button style="background:#25D366;color:white;padding:15px 30px;border:none;border-radius:10px;font-size:18px;font-weight:bold;">
-                💬 Send Order on WhatsApp
-            </button>
-        </a>
-        """, unsafe_allow_html=True)
+                message += "=" * 40 + "\n"
+                message += f"💰 TOTAL: ${total_price:.2f}\n\n"
+
+                if st.session_state.notes:
+                    message += f"💬 Special Instructions: {st.session_state.notes}\n"
+
+                whatsapp_link = f"https://wa.me/96171184268?text={urllib.parse.quote(message)}"
+                st.markdown(f'<a href="{whatsapp_link}" target="_blank"><button style="background-color:#25D366;color:white;padding:15px 30px;border:none;border-radius:10px;font-size:18px;font-weight:bold;">💬 Send Order via WhatsApp</button></a>', unsafe_allow_html=True)
+            else:
+                st.error("❌ Please fill in your name and phone number!")
     else:
-        st.error("❌ Name and phone are required")
+        st.markdown("<p style='color:#FFB6C1; font-size:18px;'>No items selected yet. Please add items to your order.</p>", unsafe_allow_html=True)
 
 elif st.session_state.page == "Packages":
-    st.markdown("<h1>Party Packages</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align:center; font-size: 36px; color:#FFB6C1; text-shadow: 2px 2px 4px #000; margin:10px 0 0 0; font-style:italic;'>Delicious Desserts</h3>", unsafe_allow_html=True)
+    st.markdown("<h1>🎉 Party Packages</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; color:#FFB6C1;'>Perfect for Your Celebrations!</h3>", unsafe_allow_html=True)
+    st.markdown("---")
 
     packages = {
         "Small Party ($120)": "1 Custom Cake (7 people), 12 Cookies, 12 Brownies, 12 Donuts",
@@ -312,145 +275,54 @@ elif st.session_state.page == "Packages":
         "Large Party ($350)": "1 Custom Cake (30 people), 24 Cookies, 24 Brownies, 1 Donuts Tower, 1 Eclair Tower, 24 Popsicles"
     }
 
-    for name, details in packages.items():
-        st.markdown(f"<h3 style='color:#fff !important; text-shadow: 2px 2px 4px #000;'>{name}</h3>", unsafe_allow_html=True)
-        st.markdown(f"<div style='color:#fff !important; text-shadow: 1px 1px 3px #000; font-size:16px; font-weight:bold;'>{details}</div>", unsafe_allow_html=True)
-        if st.button(f"📩 Order {name} via WhatsApp"):
-            message = f"Hello Berry On Top! 🍓\n\nI want to order the {name}:\n{details}"
-            whatsapp_link = f"https://wa.me/96171184268?text={urllib.parse.quote(message)}"
-            st.markdown(f'<a href="{whatsapp_link}" target="_blank"><button style="background-color:#25D366;color:white;padding:15px 30px;border:none;border-radius:10px;font-size:18px;">💬 Send WhatsApp Order</button></a>', unsafe_allow_html=True)
-
-    if st.button("⬅️ Back to Home"):
-        go_to_page("Home")
+    for pkg_name, details in packages.items():
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.markdown(f"<h3 style='color:#fff !important;'>{pkg_name}</h3>", unsafe_allow_html=True)
+            st.markdown(f"<p style='color:#fff !important; font-size:16px;'>{details}</p>", unsafe_allow_html=True)
+        with col2:
+            if st.button(f"Order", key=f"pkg_{pkg_name}"):
+                price = pkg_name.split("($")[1].split(")")[0]
+                message = f"Hello Berry On Top! 🍓\n\nI want to order: {pkg_name}\n\n{details}\n\nTotal: ${price}"
+                whatsapp_link = f"https://wa.me/96171184268?text={urllib.parse.quote(message)}"
+                st.markdown(f'<a href="{whatsapp_link}" target="_blank"><button style="background-color:#25D366;color:white;padding:10px 20px;border:none;border-radius:8px;">WhatsApp</button></a>', unsafe_allow_html=True)
 
 elif st.session_state.page == "Gallery":
-    st.markdown("<h1>Gallery</h1>", unsafe_allow_html=True)
-    st.write("Check out our delicious creations!")
-    
-    gallery_images_page1 = [
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
-    ]
-    
-    gallery_images_page2 = [
-        "https://via.placeholder.com/300x300?text=Dessert+21",
-        "https://via.placeholder.com/300x300?text=Dessert+22",
-        "https://via.placeholder.com/300x300?text=Dessert+23",
-        "https://via.placeholder.com/300x300?text=Dessert+24",
-        "https://via.placeholder.com/300x300?text=Dessert+25",
-        "https://via.placeholder.com/300x300?text=Dessert+26",
-        "https://via.placeholder.com/300x300?text=Dessert+27",
-        "https://via.placeholder.com/300x300?text=Dessert+28",
-        "https://via.placeholder.com/300x300?text=Dessert+29",
-        "https://via.placeholder.com/300x300?text=Dessert+30",
-        "https://via.placeholder.com/300x300?text=Dessert+31",
-        "https://via.placeholder.com/300x300?text=Dessert+32",
-        "https://via.placeholder.com/300x300?text=Dessert+33",
-        "https://via.placeholder.com/300x300?text=Dessert+34",
-        "https://via.placeholder.com/300x300?text=Dessert+35",
-        "https://via.placeholder.com/300x300?text=Dessert+36",
-        "https://via.placeholder.com/300x300?text=Dessert+37",
-        "https://via.placeholder.com/300x300?text=Dessert+38",
-        "https://via.placeholder.com/300x300?text=Dessert+39",
-        "https://via.placeholder.com/300x300?text=Dessert+40",
-    ]
-    
-    gallery_images_page3 = [
-        "https://via.placeholder.com/300x300?text=Dessert+41",
-        "https://via.placeholder.com/300x300?text=Dessert+42",
-        "https://via.placeholder.com/300x300?text=Dessert+43",
-        "https://via.placeholder.com/300x300?text=Dessert+44",
-        "https://via.placeholder.com/300x300?text=Dessert+45",
-        "https://via.placeholder.com/300x300?text=Dessert+46",
-        "https://via.placeholder.com/300x300?text=Dessert+47",
-        "https://via.placeholder.com/300x300?text=Dessert+48",
-        "https://via.placeholder.com/300x300?text=Dessert+49",
-        "https://via.placeholder.com/300x300?text=Dessert+50",
-        "https://via.placeholder.com/300x300?text=Dessert+51",
-        "https://via.placeholder.com/300x300?text=Dessert+52",
-        "https://via.placeholder.com/300x300?text=Dessert+53",
-        "https://via.placeholder.com/300x300?text=Dessert+54",
-        "https://via.placeholder.com/300x300?text=Dessert+55",
-        "https://via.placeholder.com/300x300?text=Dessert+56",
-        "https://via.placeholder.com/300x300?text=Dessert+57",
-        "https://via.placeholder.com/300x300?text=Dessert+58",
-        "https://via.placeholder.com/300x300?text=Dessert+59",
-        "https://via.placeholder.com/300x300?text=Dessert+60",
-    ]
-    
-    gallery_images_page4 = [
-        "https://via.placeholder.com/300x300?text=Dessert+61",
-        "https://via.placeholder.com/300x300?text=Dessert+62",
-        "https://via.placeholder.com/300x300?text=Dessert+63",
-        "https://via.placeholder.com/300x300?text=Dessert+64",
-        "https://via.placeholder.com/300x300?text=Dessert+65",
-        "https://via.placeholder.com/300x300?text=Dessert+66",
-        "https://via.placeholder.com/300x300?text=Dessert+67",
-        "https://via.placeholder.com/300x300?text=Dessert+68",
-        "https://via.placeholder.com/300x300?text=Dessert+69",
-        "https://via.placeholder.com/300x300?text=Dessert+70",
-        "https://via.placeholder.com/300x300?text=Dessert+71",
-        "https://via.placeholder.com/300x300?text=Dessert+72",
-        "https://via.placeholder.com/300x300?text=Dessert+73",
-        "https://via.placeholder.com/300x300?text=Dessert+74",
-        "https://via.placeholder.com/300x300?text=Dessert+75",
-        "https://via.placeholder.com/300x300?text=Dessert+76",
-        "https://via.placeholder.com/300x300?text=Dessert+77",
-        "https://via.placeholder.com/300x300?text=Dessert+78",
-        "https://via.placeholder.com/300x300?text=Dessert+79",
-        "https://via.placeholder.com/300x300?text=Dessert+80",
-    ]
-    
+    st.markdown("<h1>📸 Gallery</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='color:#fff;'>Check out our delicious creations!</p>", unsafe_allow_html=True)
+    st.markdown("---")
+
+    gallery_images_page1 = ["https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop"] * 20
+    gallery_images_page2 = ["https://via.placeholder.com/300x300?text=Dessert"] * 20
+    gallery_images_page3 = ["https://via.placeholder.com/300x300?text=Dessert"] * 20
+    gallery_images_page4 = ["https://via.placeholder.com/300x300?text=Dessert"] * 20
+
     all_pages = [gallery_images_page1, gallery_images_page2, gallery_images_page3, gallery_images_page4]
     current_images = all_pages[st.session_state.gallery_page - 1]
-    
-    st.markdown(f"<h3>Page {st.session_state.gallery_page} of 4</h3>", unsafe_allow_html=True)
-    
+
+    st.markdown(f"<h3 style='text-align:center;'>Page {st.session_state.gallery_page} of 4</h3>", unsafe_allow_html=True)
+
     cols = st.columns(4)
     for idx, img in enumerate(current_images):
         with cols[idx % 4]:
             st.image(img, use_column_width=True)
-    
+
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         if st.session_state.gallery_page > 1:
             if st.button("⬅️ Previous"):
                 st.session_state.gallery_page -= 1
                 st.rerun()
-    
     with col4:
         if st.session_state.gallery_page < 4:
             if st.button("Next ➡️"):
                 st.session_state.gallery_page += 1
                 st.rerun()
-    
-    if st.button("⬅️ Back to Home"):
-        go_to_page("Home")
 
 elif st.session_state.page == "Contact":
-    st.markdown("<h1>Contact Us</h1>", unsafe_allow_html=True)
-    st.write("📞 Phone: +961 71 184 268")
-    st.write("📧 Email: berryontop@gmail.com")
-    st.write("🏠 Address: south lebanon")
-
-    if st.button("⬅️ Back to Home"):
-        go_to_page("Home")
-
+    st.markdown("<h1>📞 Contact Us</h1>", unsafe_allow_html=True)
+    st.markdown("---")
+    st.markdown("<h3 style='color:#FFB6C1;'>Get in Touch!</h3>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:18px;'>📞 <b>Phone:</b> +961 71 184 268</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:18px;'>📧 <b>Email:</b> berryontop@gmail.com</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:18px;'>🏠 <b>Address:</b> South Lebanon</p>", unsafe_allow_html=True)
