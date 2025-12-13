@@ -1,56 +1,57 @@
 import streamlit as st
 import urllib.parse
 
-
-st.set_page_config(
-    page_title="Berry On Top 🍓",
-    layout="wide",
-    initial_sidebar_state="auto",
-    menu_items={
-        'Get Help': None,
-        'Report a bug': None,
-        'About': None
-    }
-)
-st.markdown("""
-<style>
-
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-</style>
-""", unsafe_allow_html=True)
-
-st.set_page_config(
-    page_title="Berry On Top 🍓",
-    layout="wide",   
-    initial_sidebar_state="auto"
-)
-
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"] {
- background-image: url("https://i.pinimg.com/1200x/76/18/fe/7618fe761344a9ba3d40386ba48ccf5d.jpg");
+  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+</style>
+""", unsafe_allow_html=True)
 
-[data-testid="stAppViewContainer"]::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.4);
-    z-index: 0;
-}
-
+st.markdown("""
+<style>
 html, body, [class*="css"] {
     color: #ffffff !important;
     text-shadow: 1px 1px 2px #000000;
-    font-family: 'Cursive', 'Brush Script MT', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, label, .stTextInput label, .stSelectbox label, .handwriting, .packages-title, .packages-subtitle, .package-name, .package-details {
+h1, h2, h3, h4, h5, h6 {
     color: #ffffff !important;
-    text-shadow: 2px 2px 4px #000 !important;
-    font-family: 'Cursive', 'Brush Script MT', sans-serif;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+label, .stTextInput label, .stSelectbox label {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+.handwriting {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px #000000;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+html, body, [class*="css"] {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+label, .stTextInput label, .stSelectbox label {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px #000000;
 }
 
 .stButton>button {
@@ -67,11 +68,15 @@ h1, h2, h3, h4, h5, h6, label, .stTextInput label, .stSelectbox label, .handwrit
 }
 
 .stTextInput>div>div>input, 
-.stTextArea>div>div>textarea, 
-.stSelectbox>div>div>div {
+.stTextArea>div>div>textarea {
     background-color: rgba(255,255,255,0.9) !important;
     color: #000 !important;
     border: 2px solid #fff;
+    border-radius: 5px;
+}
+
+.stSelectbox>div>div>div {
+    background-color: rgba(255,255,255,0.9) !important;
     border-radius: 5px;
 }
 
@@ -93,36 +98,61 @@ h1, h2, h3, h4, h5, h6, label, .stTextInput label, .stSelectbox label, .handwrit
     color: rgba(0,0,0,0.5);
 }
 
-.contact-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #ff1744;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    font-weight: bold;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-    z-index: 999;
-}
-
-@media only screen and (max-width: 768px) {
-    .contact-float {
-        bottom: 15px;
-        right: 15px;
-        padding: 12px 20px;
-        font-size: 14px;
-    }
+.handwriting {
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
+    font-family: 'Cursive', 'Brush Script MT', sans-serif;
 }
 </style>
-
-<div class="contact-float">
-    📞 Contact: +961 71 184 268
-</div>
 """, unsafe_allow_html=True)
 
-def go_to_page(page_name):
-    st.session_state.page = page_name
+st.markdown("""
+<style>
+.sidebar-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: rgba(200, 16, 46, 0.95);
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebar-nav h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.sidebar-nav button {
+    width: 100%;
+    background-color: #fff;
+    color: #c8102e;
+    border: none;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.sidebar-nav button:hover {
+    background-color: #FFB6C1;
+    transform: translateX(5px);
+}
+
+main {
+    margin-left: 250px;
+    padding: 20px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 if "page" not in st.session_state:
     st.session_state.page = "Home"
@@ -134,79 +164,28 @@ if "gallery_page" not in st.session_state:
     st.session_state.gallery_page = 1
 
 st.markdown("""
-<style>
-.stButton>button {
-    width: 220px;
-    height: 60px;
-    font-size: 18px;
-    background-color: #c8102e;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-}
-
-.stButton>button:hover {
-    background-color: #ff3c4e;
-}
-
-@media only screen and (max-width: 768px) {
-    .stButton>button {
-        width: 100%;
-        max-width: 180px;
-        height: 50px;
-        font-size: 16px;
-    }
-}
-</style>
+<div class="sidebar-nav">
+    <h2>🍓 Berry on Top</h2>
+</div>
+<main>
 """, unsafe_allow_html=True)
 
-if st.session_state.page == "Home":
-    st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align:center; font-size: 70px; margin:0; letter-spacing:2px;'>Berry on Top</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align:center; font-size: 32px; color:#FFB6C1; margin:10px 0; font-weight:bold;'>Delicious Desserts</h3>", unsafe_allow_html=True)
-    st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)
-
-    st.markdown("""
-    <style>
-    .stButton>button {
-        width: 100%;
-        max-width: 200px;
-        height: 60px;
-        font-size: 18px;
-        background-color: #c8102e;
-        color: white;
-        font-weight: bold;
-        border-radius: 10px;
-        box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-        margin: 5px auto;
-    }
-    .stButton>button:hover {
-        background-color: #ff3c4e;
-    }
-    @media only screen and (max-width: 600px) {
-        .stButton>button {
-            font-size: 16px;
-            height: 50px;
-            max-width: 90%;
-        }
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    col1, col2, col3, col4 = st.columns([1,1,1,1], gap="small")
-    with col1:
-        if st.button("🎂 Order Cakes & Desserts"):
-            go_to_page("Order")
-    with col2:
-        if st.button("🎁 View Packages"):
-            go_to_page("Packages")
-    with col3:
-        if st.button("📸 Gallery"):
-            go_to_page("Gallery")
-    with col4:
-        if st.button("📞 Contact Us"):
-            go_to_page("Contact")
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1:
+    if st.button("🏠 Home"):
+        st.session_state.page = "Home"
+with col2:
+    if st.button("🎂 Order"):
+        st.session_state.page = "Order"
+with col3:
+    if st.button("🎁 Packages"):
+        st.session_state.page = "Packages"
+with col4:
+    if st.button("📸 Gallery"):
+        st.session_state.page = "Gallery"
+with col5:
+    if st.button("📞 Contact"):
+        st.session_state.page = "Contact"
 
 elif st.session_state.page == "Order":
     st.markdown("<h1>Place Your Orders</h1>", unsafe_allow_html=True)
@@ -222,7 +201,7 @@ elif st.session_state.page == "Order":
         if real_fake == "Real Cake":
             shape = st.selectbox("Shapes", ["Round", "Oval","Heart"])
             flavors = st.selectbox("Flavors Available", ["Nutella", "Ferrero Rocher", "Vanilla", "Vanilla & Hazelnut", "Lotus"])
-            size = st.selectbox("Sizes Available", ["3 people", "5 people", "10 people", "15 people", "20 people","25 people","30 people","40 people","50 people"])
+            size = st.selectbox("Sizes Available", ["3 people", "5 people", "10 people", "15 people", "20 people"])
             cake_design = st.selectbox("Design", ["Simple", "Custom Design"])
             if cake_design == "Custom Design":
                 custom_details = st.text_area("Describe your custom design")
@@ -334,11 +313,12 @@ elif st.session_state.page == "Order":
             st.error("❌ Please fill in your name and phone number!")
 
     if st.button("⬅️ Back to Home"):
-        go_to_page("Home")
+        st.session_state.page = "Home"
 
 elif st.session_state.page == "Packages":
-    st.markdown('<h1 class="packages-title" style="font-size: 80px; text-align:center;">Party Packages</h1>', unsafe_allow_html=True)
-    st.markdown('<h2 class="packages-subtitle" style="font-size: 50px; text-align:center; font-style:italic;">Delicious Desserts</h2>', unsafe_allow_html=True)
+    st.markdown("<h1>Party Packages</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; font-size: 36px; color:#FFB6C1; text-shadow: 2px 2px 4px #000; margin:10px 0 0 0; font-style:italic;'>Delicious Desserts</h3>", unsafe_allow_html=True)
+
     packages = {
         "Small Party ($120)": "1 Custom Cake (7 people), 12 Cookies, 12 Brownies, 12 Donuts",
         "Medium Party ($170)": "1 Custom Cake (15 people), 24 Cookies, 12 Brownies, 1 Donuts Tower, 12 Eclairs",
@@ -346,23 +326,12 @@ elif st.session_state.page == "Packages":
     }
 
     for name, details in packages.items():
-        st.markdown(f'''
-            <div style="
-                background-color: rgba(0, 0, 0, 0.5); 
-                padding: 30px; 
-                border-radius: 20px; 
-                margin: 20px auto; 
-                max-width: 900px;
-            ">
-                <h2 style="font-size: 60px; color:#ffffff; text-align:center; text-shadow: 2px 2px 6px #000;">{name}</h2>
-                <p style="font-size: 45px; color:#ffffff; text-align:center; text-shadow: 2px 2px 6px #000;">{details}</p>
-            </div>
-        ''', unsafe_allow_html=True)
+        st.markdown(f"<h3 style='color:#fff !important; text-shadow: 2px 2px 4px #000;'>{name}</h3>", unsafe_allow_html=True)
+        st.markdown(f"<div style='color:#fff !important; text-shadow: 1px 1px 3px #000; font-size:16px; font-weight:bold;'>{details}</div>", unsafe_allow_html=True)
         if st.button(f"📩 Order {name} via WhatsApp"):
-            import urllib.parse
             message = f"Hello Berry On Top! 🍓\n\nI want to order the {name}:\n{details}"
             whatsapp_link = f"https://wa.me/96171184268?text={urllib.parse.quote(message)}"
-            st.markdown(f'<a href="{whatsapp_link}" target="_blank"><button style="background-color:#25D366;color:white;padding:20px 40px;border:none;border-radius:15px;font-size:30px;">💬 Send WhatsApp Order</button></a>', unsafe_allow_html=True)
+            st.markdown(f'<a href="{whatsapp_link}" target="_blank"><button style="background-color:#25D366;color:white;padding:15px 30px;border:none;border-radius:10px;font-size:18px;">💬 Send WhatsApp Order</button></a>', unsafe_allow_html=True)
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
@@ -370,6 +339,7 @@ elif st.session_state.page == "Packages":
 elif st.session_state.page == "Gallery":
     st.markdown("<h1>Gallery</h1>", unsafe_allow_html=True)
     st.write("Check out our delicious creations!")
+    
     gallery_images_page1 = [
         "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
         "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop",
@@ -490,21 +460,9 @@ elif st.session_state.page == "Gallery":
 
 elif st.session_state.page == "Contact":
     st.markdown("<h1>Contact Us</h1>", unsafe_allow_html=True)
-    st.markdown("""
-    <style>
-    @media only screen and (max-width: 768px) {
-        h1 { font-size: 48px !important; }
-        h2, h3 { font-size: 24px !important; }
-        .stWrite { font-size: 16px !important; }
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
     st.write("📞 Phone: +961 71 184 268")
     st.write("📧 Email: berryontop@gmail.com")
     st.write("🏠 Address: south lebanon")
 
     if st.button("⬅️ Back to Home"):
-        go_to_page("Home")
-
-
+        go_to_page("
