@@ -1,8 +1,6 @@
 import streamlit as st
 import urllib.parse
 
-import streamlit as st
-import streamlit as st
 
 st.set_page_config(
     page_title="Berry On Top 🍓",
@@ -14,19 +12,6 @@ st.set_page_config(
         'About': None
     }
 )
-<a href="https://berryontop-bkxdghfzjm6uxqxez4dqhn.streamlit.app/" target="_blank"
-   style="
-     position: fixed;
-     bottom: 20px;
-     right: 20px;
-     z-index: 9999;
-     background: rgba(0,0,0,0.5);
-     padding: 10px;
-     border-radius: 12px;
-   ">
-  <img src="static/qr.png" width="130" alt="Scan or tap to open">
-</a>
-
 st.markdown("""
 <style>
 
@@ -37,7 +22,7 @@ footer {visibility: hidden;}
 
 st.set_page_config(
     page_title="Berry On Top 🍓",
-    layout="wide",   \
+    layout="wide",   
     initial_sidebar_state="auto"
 )
 
@@ -120,6 +105,15 @@ h1, h2, h3, h4, h5, h6, label, .stTextInput label, .stSelectbox label, .handwrit
     box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
     z-index: 999;
 }
+
+@media only screen and (max-width: 768px) {
+    .contact-float {
+        bottom: 15px;
+        right: 15px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
 </style>
 
 <div class="contact-float">
@@ -138,13 +132,13 @@ for key in ["name", "phone", "delivery", "notes"]:
         st.session_state[key] = ""
 if "gallery_page" not in st.session_state:
     st.session_state.gallery_page = 1
+
 st.markdown("""
 <style>
-/* Make all buttons same size */
 .stButton>button {
-    width: 220px;       /* fixed width */
-    height: 60px;       /* fixed height */
-    font-size: 18px;    /* uniform font size */
+    width: 220px;
+    height: 60px;
+    font-size: 18px;
     background-color: #c8102e;
     color: white;
     font-weight: bold;
@@ -154,6 +148,15 @@ st.markdown("""
 
 .stButton>button:hover {
     background-color: #ff3c4e;
+}
+
+@media only screen and (max-width: 768px) {
+    .stButton>button {
+        width: 100%;
+        max-width: 180px;
+        height: 50px;
+        font-size: 16px;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
@@ -185,6 +188,7 @@ if st.session_state.page == "Home":
         .stButton>button {
             font-size: 16px;
             height: 50px;
+            max-width: 90%;
         }
     }
     </style>
@@ -486,6 +490,16 @@ elif st.session_state.page == "Gallery":
 
 elif st.session_state.page == "Contact":
     st.markdown("<h1>Contact Us</h1>", unsafe_allow_html=True)
+    st.markdown("""
+    <style>
+    @media only screen and (max-width: 768px) {
+        h1 { font-size: 48px !important; }
+        h2, h3 { font-size: 24px !important; }
+        .stWrite { font-size: 16px !important; }
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     st.write("📞 Phone: +961 71 184 268")
     st.write("📧 Email: berryontop@gmail.com")
     st.write("🏠 Address: south lebanon")
