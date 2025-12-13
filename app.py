@@ -2,6 +2,38 @@ import streamlit as st
 import urllib.parse
 
 import streamlit as st
+import streamlit as st
+
+st.set_page_config(
+    page_title="Berry On Top 🍓",
+    layout="wide",
+    initial_sidebar_state="auto",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
+)
+<a href="https://berryontop-bkxdghfzjm6uxqxez4dqhn.streamlit.app/" target="_blank"
+   style="
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     z-index: 9999;
+     background: rgba(0,0,0,0.5);
+     padding: 10px;
+     border-radius: 12px;
+   ">
+  <img src="static/qr.png" width="130" alt="Scan or tap to open">
+</a>
+
+st.markdown("""
+<style>
+
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
 
 st.set_page_config(
     page_title="Berry On Top 🍓",
@@ -460,8 +492,3 @@ elif st.session_state.page == "Contact":
 
     if st.button("⬅️ Back to Home"):
         go_to_page("Home")
-
-
-
-
-
